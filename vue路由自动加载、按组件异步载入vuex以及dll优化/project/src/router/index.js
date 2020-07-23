@@ -9,7 +9,6 @@ let arr = []
 r.keys().forEach((key)=>{
   arr = arr.concat(r(key).default)
 })
-console.log(arr)
 const routes = [
   ...arr
 ]

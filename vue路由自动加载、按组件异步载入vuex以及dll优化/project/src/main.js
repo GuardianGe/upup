@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuepl from './vuepl'
-vue.use(vuepl)
+Vue.use(vuepl)
 Vue.config.productionTip = false
 
 new Vue({
