@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="foo">
+<button id="btn">提交</button>
+<button id="btn1">设置</button>
+<div>输入框的内容：<input type="text" id="xianshi"></div>
+<script>
+    var user = {};
+    var foo = document.getElementById("foo");
+    var xianshi = document.getElementById("xianshi");
+    Object.defineProperty(user, 'name', {
+        get: function () {
+            return document.getElementById('foo').value;
+        },
+        set: function (newValue) {
+            console.log(newValue);
+            document.getElementById('foo').value = newValue;
+        },
+        configurable: true
+    });
+    foo.oninput = function () {
+        xianshi.value = user.name;
+    }
+    xianshi.oninput = function () {
+        user.name = xianshi.value;
+        xianshi.innerHTML = user.name;
+    }
+</script>
+</body>
+</html>
