@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // class LazyManClass {
+    //   constructor(name) {
+    //     this.name = name
+    //     this.queue = []
+    //     console.log(`Hi I am ${name}`)
+    //     setTimeout(() => {
+    //       this.next()
+    //     }, 0)
+    //   }
+
+    //   sleepFirst(time) {
+    //     const fn = () => {
+    //       setTimeout(() => {
+    //         console.log(`等待了${time}秒...`)
+    //         this.next()
+    //       }, time)
+    //     }
+    //     this.queue.unshift(fn)
+    //     return this
+    //   }
+
+    //   sleep(time) {
+    //     const fn = () => {
+    //       setTimeout(() => {
+    //         console.log(`等待了${time}秒...`)
+    //         this.next()
+    //       }, time)
+    //     }
+    //     this.queue.push(fn)
+    //     return this
+    //   }
+
+    //   eat(food) {
+    //     const fn = () => {
+    //       console.log(`I am eating ${food}`)
+    //       this.next()
+    //     }
+    //     this.queue.push(fn)
+    //     return this
+    //   }
+
+    //   next() {
+    //     const fn = this.queue.shift()
+    //     fn && fn()
+    //   }
+    // }
+
+    // function LazyMan(name) {
+    //   return new LazyManClass(name)
+    // }
+
+
+
+    class LazyClass {
+      constructor(name) {
+        this.name = name
+        console.log(`${name}`);
+        this.taskList = []
+        setTimeout(() => {
+          this.next()
+        }, 0);
+      }
+      eat(type) {
+        let fn = () => {
+          console.log(`eat ${type}`);
+          this.next()
+        }
+        this.taskList.push(fn)
+        return this
+      }
+      sleep(time) {
+        let fn = () => {
+          setTimeout(() => {
+            console.log(`sleep ${time}`);
+            this.next()
+          }, time * 1000);
+        }
+        this.taskList.push(fn)
+        return this
+      }
+      sleepFirst(time) {
+        let fn = () => {
+          setTimeout(() => {
+            console.log(`sleepFirst ${time}`);
+            this.next()
+          }, time * 1000);
+        }
+        this.taskList.unshift(fn)
+        return this
+      }
+
+      next() {
+        let fn = this.taskList.shift()
+        fn && fn()
+      }
+    }
+    function Lazy(name) {
+      return new LazyClass(name)
+    }
+    Lazy('Tony').eat('lunch').eat('dinner').sleepFirst(5).sleep(10).eat('junk food');
+    Promise.prototype.finally = function (cb) {
+      let fn = this.constructor
+      return this.then(
+        v => Promise.resolve(cb()).then(() => v),
+        err => Promise.reject(cb()).then(() => { throw err })
+      )
+    }
+
+    let arr = [2, 10, 3, 4, 5, 11, 10, 11, 20, 21, 18]
+
+    function re(arr) {
+      let set = [...new Set(arr)].sort((a, b) => a - b);
+      let res = [], item = []
+      set.forEach((v, i) => {
+        if (i == 0) {
+          item.push(v)
+        } else {
+          if (set[i] - set[i - 1] == 1) {
+            item.push(v)
+          } else {
+            res.push(item)
+            item = [v]
+          }
+          if (i == set.length - 1) res.push(item)
+        }
+      })
+      return res
+    }
+    function so(arr) {
+      let set = [...new Set(arr)].sort((a, b) => a - b)
+      let res = [], item = [], key = 0
+      set.forEach((v, i) => {
+        let s = Math.floor(v / 10)
+        if (i == 0) {
+          key = s
+          item.push(v)
+        } else {
+          if (s == key) {
+            item.push(v)
+          } else {
+            res.push(item)
+            key = <s></s>
+            item = [v]
+          }
+          if (i == set.length - 1) res.push(item)
+        }
+      })
+    }
+
+    function so2(arr) {
+      let set = [...new Set(arr)]
+      let map = new Map()
+      set.forEach((v, i) => {
+        let key = Math.floor(v / 10)
+        let item = map.get(key) || []
+        item.push(v)
+        map.set(key, item);
+      })
+      return [...map.values()]
+    }
+
+
+
+
+
+  </script>
+</body>
+
+</html>

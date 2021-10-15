@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //JS 异步解决方案的发展历程以及优缺点
+
+    //1. 回调函数（callback）
+    //缺点：回调地狱，不能用 try catch 捕获错误，不能 return
+
+    //2. Promise
+    //缺点：错误需要通过回调函数来捕获
+
+    //3.Async/await
+
+    //缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。
+
+    //赠送：实现一个new
+
+    function _new(fn, ...rest) {
+      let newObj = Object.create(fn.prototype)
+      let res = fn.apply(newObj, rest)
+      return res && typeof res == 'object' ? res : newObj
+    }
+
+    //http协议
+      //http/1.0：如需要发送多个请求必须创建多个 TCP 连接，并且浏览器对于单域名请求有数量限制（一般6个），其连接无法被复用
+
+      // http/1.1：引入管道机制（Pipelining）技术，但先天 FIFO（先进先出）机制导致当前请求的执行依赖于上一个请求执行的完成，容易引起报头阻塞，并没有从根本上解决问题
+
+      // http/2：重新定义底层 http 语义映射，允许同一个连接上使用请求和响应双向数据流。同一域名只需占用一个 TCP 连接，通过数据流（Stream）以帧为基本协议单位，
+      //从根本上解决了问题，避免了因频繁创建连接产生的延迟，减少了内存消耗，提升了使用性能
+
+
+    //React 中 setState 什么时候是同步的，什么时候是异步的？
+    //由react生命周期或事件处理函数触发的则为异步
+      // this.setState({foo: 123}, ()=> {
+      //   console.log(foo);
+      //   // 123
+      // });
+    //由定时器或非react触发的则为同步
+      // setTimeout(() => {
+      //   this.setState({foo: 123})
+      // }, 0);
+  </script>
+</body>
+
+</html>

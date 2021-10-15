@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //1、实现下面的find方法
+    var data = [
+      { userId: 8, title: 'title1' },
+      { userId: 11, title: 'other' },
+      { userId: 15, title: null },
+      { userId: 19, title: 'title2' }
+    ];
+    var find = function (origin) {
+      let filiterData = []
+      return {
+        where: function (params) {
+          if (params && typeof params == 'object') {
+            filiterData = origin.filter(v => {
+              let flag = true
+              try {
+                Object.keys(params).forEach(d => {
+                  let s = v[d]
+                  if (!params[d].test(s)) {
+                    flag = false
+                    throw new Error()
+                  }
+                })
+              } catch (error) { }
+              return flag
+            })
+            return {
+              orderBy: function (key, sort) {
+                return filiterData.sort(function (a, b) {
+                  return sort == 'desc' ? b[key] - a[key] : a[key] - b[key]
+                })
+              }
+            }
+          }
+          return origin
+        }
+      }
+
+    }
+    //查找data中，符合条件的数据，并进行排序
+    var result = find(data).where({
+      "title": /\d$/
+    }).orderBy('userId', 'desc');
+    console.log(result); // [{ userId: 19, title: 'title2'}, { userId: 8, title: 'title1' }];
+
+  </script>
+
+  <script>
+    /* --------- 找出最接近的值 ----------- */
+    const arr2 = [1, 5, 9, 15, 28, 33, 55, 78, 99];
+
+    /**
+     * 返回最接近输入值的数字，如果有多个，返回最大的那个
+     * @param {number} n
+     * @return {number}
+     */
+    function findNext(n, arr) {
+      var idx = 0
+      var val = Number.MAX_SAFE_INTEGER
+      for (let i = 0; i < arr.length; i++) {
+        var res = Math.abs(arr[i] - n)
+        if (res <= val) {
+          if (res == val && arr[i] < val) {
+            continue
+          }
+          idx = i
+          val = res
+        }
+      }
+      return arr[idx]
+    }
+    console.log(findNext(44, arr2));
+
+  </script>
+  <script>
+    //实现一个方法，拆解URL参数中queryString
+    //如 输入: https://www.alipay.com/?resumeId=5324865&spm=a1z7x.7958134.0.0.b6e04f46do7UL5&applicationId=7717618&taskId=8231232#aa=2
+    let url = 'https://www.alipay.com/?resumeId=5324865&spm=a1z7x.7958134.0.0.b6e04f46do7UL5&applicationId=7717618&taskId=8231232#aa=2'
+    function queryString(url) {
+      let result = {}
+      if (url) {
+        url.split('?')[1].split('&').map(v => {
+          let res = v.split('=')
+          result[res[0]] = res[1]
+        })
+      }
+      return result
+    }
+
+    console.log(queryString(url));
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="parent">
+    <div class="child-1">
+      <div class="child-1-1">
+        <div class="child-1-1-1">
+          a
+        </div>
+      </div>
+      <div class="child-1-2">
+        <div class="child-1-2-1">
+          b
+        </div>
+      </div>
+      <div class="child-1-3">
+        <div class="child-1-3-1">
+          b
+        </div>
+      </div>
+    </div>
+    <div class="child-2">
+      <div class="child-2-1">
+        <div class="child-2-1-1">
+          c
+        </div>
+      </div>
+      <div class="child-2-2">
+        <div class="child-2-2-1">
+          d
+        </div>
+      </div>
+    </div>
+    <div class="child-3">
+      <div class="child-3-1">
+        <div class="child-3-1-1">
+          e
+        </div>
+      </div>
+      <div class="child-3-2">
+        <div class="child-3-2-1">
+          f
+        </div>
+      </div>
+      <div class="child-3-3">
+        <div class="child-3-3-1">
+          g
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  //深度优先遍历和广度优先遍历
+
+
+
+  let node = document.querySelector('.parent')
+
+  // let deepTraversal3 = function (node) {
+  //   let nodes = []
+  //   let stack = []
+  //   if (node) {
+  //     stack.push(node)
+  //     while (stack.length) {
+  //       let n = stack.pop()
+  //       nodes.push(n)
+  //       let children = n.children
+  //       for (let i = children.length - 1; i >= 0; i--) {
+  //         stack.push(children[i])
+  //       }
+  //     }
+  //   }
+  //   return nodes
+  // }  
+  let deepTraversal3 = function (node) {
+    let nodes = []
+    let arr = []
+    if (node) {
+      arr.push(node)
+      while (arr.length) {
+        let n = arr.shift()
+        nodes.push(n)
+        let children = n.children
+        for (let i = 0; i < children.length; i++) {
+          arr.push(children[i])
+        }
+      }
+    } 
+    return nodes2
+  }
+  console.log(deepTraversal3(node));
+
+</script>
+
+</html>

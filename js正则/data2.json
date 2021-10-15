@@ -1,0 +1,43 @@
+{
+  "os": {
+    "os_api": "25",
+    "os_version": null,
+    "os_type": "2"
+  },
+  "app": {
+    "app_vcode": "0",
+    "app_vname": "",
+    "app_pkg": "com.qihoo.contents"
+  },
+  "plugin": {
+    "plugin_vcode": null,
+    "plugin_vname": null,
+    "plugin_pkg": "com.qihoo.browser.browser"
+  },
+  "pluginsdk": {
+    "pluginsdk_vcode": "2001000",
+    "pluginsdk_vname": "",
+    "pluginsdk_pkg": "com.qihoo360.newssdkcore"
+  },
+  "adsdk": {
+    "adsdk_vcode": "200900",
+    "adsdk_vname": ""
+  },
+  "wid": null,
+  "project": "config_chromium",
+  "network_type": null,
+  "location": "",
+  "index": [
+    {
+      "m": "h5_fankui_config",
+      "i": 0
+    }
+  ],
+  "data": {
+    "os": {
+      "os_api": "25",
+      "os_version": "1801-A01",
+      "os_type": "2"
+    }
+  }
+}

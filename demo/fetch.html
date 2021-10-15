@@ -1,0 +1,63 @@
+let arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+function fetch(url) {
+return new Promise((r, j) => {
+console.log(url);
+setTimeout(() => {
+r()
+}, Math.ceil(Math.random() * 4000));
+})
+}
+function execute(n) {
+let i = 0
+if (arr.length > n) {
+let fetchStatus = function () {
+if (i >= arr.length) return
+fetch(arr[i]).then(() => {
+i++; fetchStatus()
+})
+if (i < n - 1) { i++; fetchStatus() } } fetchStatus() } else { arr.forEach(v=> {
+  fetch(v)
+  })
+  }
+  }
+  execute(3)
+
+
+
+  class ExecuteFetch{
+  constructor(urlList,limit){
+  this.urlList = urlList||[];
+  this.taskList = [];
+  this.urlList.map((item,index)=>{
+  this.fetchMethod(item)
+  if(index<limit){ this.next() } }) this.UrlIndex=limit; setTimeout(()=>{
+    console.log("初始化调用！")
+    this.next()
+    },0)
+    }
+    fetchMethod(time){
+    let that = this;
+    var fn = (function (time) {
+    return function () {
+    new Promise((resolve,reject)=>{
+    setTimeout((time)=>{
+    console.log(`请求了${time}秒`)
+    that.next()
+    },time*1000,time)
+    }).then(res=>{
+    console.log('~~~~~~~~~~~')
+    })
+    }
+    })(time)
+    this.taskList.push(fn)
+    return this;
+    }
+    next(){
+    var fn = this.taskList.shift()
+    fn && fn()
+    }
+    }
+    function execute(urlList,limit){
+    return new ExecuteFetch(urlList,limit)
+    }
+    execute([1,4,1,5,3,1,8,1],3)

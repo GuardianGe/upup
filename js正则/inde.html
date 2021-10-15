@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="gulp.js"></script>
+</head>
+
+<body>
+    <script>
+        // let hd = 'sfsfsaf238lljjh12387kk'
+        // let nums = [...hd].filter(v => !Number.isNaN(parseInt(v)))
+        // console.log(nums.join(' '));
+
+        //正则表达式语句
+
+        //1.字面量
+        // let hd = 'sfsfsaf238lljjh12387kk'
+        // let a = 'fsf'
+        // console.log(/s/.test(hd));
+        // console.log(eval(`/${a}/`).test(hd));
+
+        //2.对象
+        // let hd = 'sfsfsaf238lljjh12387kk'
+        // let reg = new RegExp('u', 'g')
+        // console.log(reg.test(hd));
+
+
+        let fn = (...rest) => {
+            console.log(rest, 'fn');
+
+        }
+        let fn2 = function () {
+            console.log(arguments, 'fn2');
+            // console.log([...arguments]);
+            // console.log(Array.from(arguments));
+            // console.log(Array.prototype.slice.call(arguments));
+            // console.log([].slice.call(arguments));
+        }
+        // fn(1, 2)
+        // fn2(1, 2)
+        let deepClone = (obj) => {
+            let data = Array.isArray(obj) ? [] : {}
+            Object.keys(obj).forEach(key => {
+                if (obj[key] && typeof obj[key] == 'object') {
+                    data[key] = deepClone(obj[key])
+                } else {
+                    data[key] = obj[key]
+                }
+            })
+            // for (const key in obj) {
+            //     if (obj.hasOwnProperty(key)) {
+            //         if (obj[key] && typeof obj[key] == 'object') {
+            //             data[key] = deepClone(obj[key])
+            //         } else {
+            //             data[key] = obj[key]
+            //         }
+            //     }
+            // }
+            return data
+        }
+        let a = {
+            name: 'a',
+            fav: {
+                name: 'sing',
+                year: 3
+            },
+            w: function () {
+                var a = 1
+            },
+            a: undefined
+        }
+        let b = deepClone(a)
+        console.log(b);
+
+
+    </script>
+</body>
+
+</html>
