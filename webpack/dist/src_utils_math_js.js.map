@@ -1,0 +1,1 @@
+{"version":3,"file":"src_utils_math_js.js","mappings":";;;;;;;;;;;;;;AAAO;AACP;AACA;;AAEO;AACP;AACA","sources":["webpack://webpack123/./src/utils/math.js"],"sourcesContent":["export const plus = (a, b) => {\n  return a + b;\n};\n\nexport const minus = (a, b) => {\n  return a - b;\n};\n"],"names":[],"sourceRoot":""}
