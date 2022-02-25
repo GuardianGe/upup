@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //面条对折n次切一刀，产生多少根
+    //规律：
+    // 0         2
+    // 1         2+2^0
+    // 2         2+2^0+2^1
+    // 3         2+2^0+2^1+2^2
+    function miantiao(n) {
+      let t = 1, sum = 2;
+      for (let i = 0; i < n; i++) {
+        sum += t;
+        t = t * 2
+      }
+      return sum
+    }
+
+    //已知数组[1,2,3,4,...],求相加和相等或者差值最小的方式
+    let arr = [1, 2, 3, 4, 5, 6]
+    function eq(arr) {
+      let idx = 12
+    }
+  </script>
+</body>
+
+</html>
+
+切口 切口面
+1 2
+n (2n-2)/2-2
+
+对着n次 2^n层面条
