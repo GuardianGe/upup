@@ -14,6 +14,7 @@
 <script>
   //节流和防抖
 
+  //定时器导致第一次执行延迟
   function jl(fn) {
     let mark = true
     return function () {
@@ -23,6 +24,22 @@
           fn.apply(this, arguments)
           mark = true
         }, 500);
+      }
+    }
+  }
+  function jl2(fn, delay) {
+    let startTim = +new Date()
+    return function (...rest) {
+      let nowTim = +new Date()
+      let s = delay - (nowTim - startTim)
+      if (s < 0) {
+        fn.apply(this, rest)
+        startTim = +new Date()
+      } else {
+        setTimeout(() => {
+          fn.apply(this, rest)
+          startTim = +new Date()
+        }, s);
       }
     }
   }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+
+    // 输入：l1 = [2, 4, 3], l2 = [5, 6, 4]
+    // 输出：[7, 0, 8]
+    // 解释：342 + 465 = 807.
+    /**
+     * @param {ListNode} l1
+     * @param {ListNode} l2
+     * @return {ListNode}
+     */
+    var addTwoNumbers = function (l1, l2) {
+      let head = null, tail = null;
+      let carry = 0;
+      while (l1 || l2) {
+        const n1 = l1 ? l1.val : 0;
+        const n2 = l2 ? l2.val : 0;
+        const sum = n1 + n2 + carry;
+        if (!head) {
+          head = tail = new ListNode(sum % 10);
+        } else {
+          tail.next = new ListNode(sum % 10);
+          tail = tail.next;
+        }
+        carry = Math.floor(sum / 10);
+        if (l1) {
+          l1 = l1.next;
+        }
+        if (l2) {
+          l2 = l2.next;
+        }
+      }
+      if (carry > 0) {
+        tail.next = new ListNode(carry);
+      }
+      return head;
+    };
+  </script>
+</body>
+
+</html>

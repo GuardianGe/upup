@@ -1,29 +1,29 @@
 function Company() {
-    var instance = {
-      name: 'a1',
-      b:{
-        getname4:()=>{
-          console.log(this.name)
-        }
-      },
-      getName() {
-        console.log(this.name);
-      },
-      getName1: () => {
-        console.log(JSON.stringify(this))
-        console.log(this.name);
+  var instance = {
+    name: 'a1',
+    b: {
+      getname4: () => {
+        console.log(this.name)
       }
-    };
-    this.name = 'a2';
-    this.getName2 = function () {
+    },
+    getName() {
+      console.log(this.name);
+    },
+    getName1: () => {
+      console.log(JSON.stringify(this))
       console.log(this.name);
     }
-    return instance;
+  };
+  this.name = 'a2';
+  this.getName2 = function () {
+    console.log(this.name);
   }
-  Company.prototype.name = 'a3';
-  var company1 = new Company();
-  company1.getName();
-  company1.b.getname4();
-  company1.getName1();
+  return instance;
+}
+Company.prototype.name = 'a3';
+var company1 = new Company();
+company1.getName(); //a1
+company1.b.getname4(); //undefined
+company1.getName1(); //a3
 
-  // company1.getName2();
+company1.getName2(); //error
